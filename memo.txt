@@ -8,7 +8,7 @@ source <仮想環境名>/bin/activate
 pip install -r requirements.txt
 
 プロジェクト作成
-django-admin startproject mysite .
+django-admin startproject config .
 
 setting.py変更
 LANGUAGE_CODE = 'ja'
@@ -19,3 +19,14 @@ python manage.py migrate
 
 Webサーバ起動
 python manage.py runserver
+
+# アプリケーション作成
+python manage.py startapp app
+
+# アカウント関係のアプリケーション作成
+python manage.py startapp accounts
+
+settings.pyのINSTALLED_APPSに追加
+'rest_framework'
+'app'
+'accounts'
