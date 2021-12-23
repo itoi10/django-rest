@@ -131,20 +131,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # RESTフレームワークの設定
 # 認証にsimplejwtのJWSAuthenticationを使用する
 REST_FRAMEWORK = {
-  'DEFAULT_PERMISSION_CLASSES': [
-    'rest_framework.permissions.IsAuthenticated',
-  ],
-  'DEFAULT_AUTHENTICATION_CLASSES': [
-    'rest_framework_simplejwt.authentication.JWTAuthentication',
-  ]
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
 }
 
 # simplejwtの設定
 SIMPLE_JWT = {
-  'ACCOUNT_TOKEN_LIFETIME': timedelta(hours=1), # アクセストークンの期限 (1時間)
-  'REFRESH_TOKEN_LIFETIME': timedelta(days=3),  # リフレッシュトークンの期限 (3日)
-  'ROTATE_REFRESH_TOKENS': False,
-  'BLACKLIST_AFTER_ROTATION': False,
-  'AUTH_HEADER_TYPES': { 'Bearer', },
-  'AUTH_TOKEN_CLASSES': { 'rest_framework_simplejwt.tokens.AccessToken', }
+    'ACCOUNT_TOKEN_LIFETIME': timedelta(hours=1), # アクセストークンの期限 (1時間)
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=3),  # リフレッシュトークンの期限 (3日)
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'AUTH_HEADER_TYPES': { 'Bearer', },
+    'AUTH_TOKEN_CLASSES': { 'rest_framework_simplejwt.tokens.AccessToken', }
 }
+
+# メールアドレス認証のためにカスタムユーザー設定
+AUTH_USER_MODEL = 'accounts.UserAccount'
