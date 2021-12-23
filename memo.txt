@@ -30,3 +30,10 @@ settings.pyのINSTALLED_APPSに追加
 'rest_framework'
 'app'
 'accounts'
+
+# JWT認証とは
+JSON Web Tokenの略
+ JSON: JSの構造を持ったデータフォーマット
+ Token: ユーザーを識別するための認証情報
+JWTはJSのデータフォーマットの認証情報
+JWT認証は署名が含まれているので改竄を検知できる
