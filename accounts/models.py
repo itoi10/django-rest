@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
+# モデルを作成したらデータベースの再構築を行う
+# $ python manage.py makemigrations
+# $ rm -rf db.sqlite3 (カスタムユーザーを作成したので一旦DB削除)
+# $ python manage.py migrate
 
 class UserManager(BaseUserManager):
     # アカウント登録のときに呼び出される関数
