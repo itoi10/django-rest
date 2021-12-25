@@ -48,9 +48,9 @@ https://h-memo.com/django-custom-user/
 $ python manage.py createsuperuser
 
 # API動作確認 (Postman)
-Headers Content-Type : application/json
 ## アカウント登録
 POST http://127.0.0.1:8000/api/auth/register/
+  Headers Content-Type : application/json
   Body
   - email : 任意
   - name : 任意
@@ -60,6 +60,7 @@ response:
 
 ## ログイン
 POST http://127.0.0.1:8000/api/login/
+  Headers Content-Type : application/json
   Body
   - email : 登録したもの
   - password : 登録したもの
@@ -68,6 +69,7 @@ response
 
 ## リフレッシュトークン
 POST http://127.0.0.1:8000/api/refresh/
+  Headers Content-Type : application/json
   Body
   - refresh : リフレッシュトークン
 response
@@ -75,6 +77,7 @@ response
 
 ## 認証チェック
 POST http://127.0.0.1:8000/api/verify/
+  Headers Content-Type : application/json
   Body
   - token : アクセストークン
 response
