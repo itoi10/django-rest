@@ -46,3 +46,43 @@ https://h-memo.com/django-custom-user/
 
 # 管理者作成
 $ python manage.py createsuperuser
+
+# API動作確認 (Postman)
+Headers Content-Type : application/json
+## アカウント登録
+POST http://127.0.0.1:8000/api/auth/register/
+  Body
+  - email : 任意
+  - name : 任意
+  - password : 任意
+response:
+  {"success": "ユーザーの作成に成功しました"}
+
+## ログイン
+POST http://127.0.0.1:8000/api/login/
+  Body
+  - email : 登録したもの
+  - password : 登録したもの
+response
+  {"refresh": リフレッシュトークン, "access": アクセストークン}
+
+## リフレッシュトークン
+POST http://127.0.0.1:8000/api/refresh/
+  Body
+  - refresh : リフレッシュトークン
+response
+  {"access": 新しいアクセストークン}
+
+## 認証チェック
+POST http://127.0.0.1:8000/api/verify/
+  Body
+  - token : アクセストークン
+response
+  {}  200 OK
+
+## ユーザー情報取得
+GET http://127.0.0.1:8000/api/auth/user/
+  Headers
+  - Authorization : Bearer アクセストークン
+response
+  { "user": {"id": ユーザーID, "name": ユーザー名 , "email": メールアドレス} }

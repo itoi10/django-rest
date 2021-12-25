@@ -6,7 +6,7 @@ urlpatterns = [
     # simplejwtのview
     path('api/login/', TokenObtainPairView.as_view()),
     path('api/refresh/', TokenRefreshView.as_view()),
-    path('api/verity/', TokenVerifyView.as_view()),
+    path('api/verify/', TokenVerifyView.as_view()),
 
     # アカウント認証系はaccountsに任せる
     path('api/auth/', include('accounts.urls')),
