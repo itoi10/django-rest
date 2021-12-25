@@ -42,3 +42,7 @@ JWT認証は署名が含まれているので改竄を検知できる
 # カスタムユーザーモデル
 Djangoでアプリを始めるときは必ずカスタムユーザを作る
 https://h-memo.com/django-custom-user/
+
+
+# 管理者作成
+$ python manage.py createsuperuser

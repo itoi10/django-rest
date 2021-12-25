@@ -145,8 +145,8 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=3),  # リフレッシュトークンの期限 (3日)
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
-    'AUTH_HEADER_TYPES': { 'Bearer', },
-    'AUTH_TOKEN_CLASSES': { 'rest_framework_simplejwt.tokens.AccessToken', }
+    'AUTH_HEADER_TYPES': ( 'Bearer', ),
+    'AUTH_TOKEN_CLASSES': ( 'rest_framework_simplejwt.tokens.AccessToken', )
 }
 
 # メールアドレス認証のためにカスタムユーザー設定
