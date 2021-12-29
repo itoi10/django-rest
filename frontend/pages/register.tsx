@@ -16,9 +16,10 @@ const Register:React.FC = () => {
     name: '',
     email: '',
     password: '',
+    confirmPassword: '',
   })
 
-  const { name, email, password } = formData
+  const { name, email, password, confirmPassword } = formData
 
   // 入力
   const onChange = (e) => {
@@ -33,6 +34,30 @@ const Register:React.FC = () => {
   // 送信
   const onSubmit = async (e) => {
     e.preventDefault()
+    // 入力チェック
+    const reMail = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+    if (!reMail.test(email)) {
+      alert('メールアドレスが正しい形式ではありません')
+      return
+    }
+    const rePwd = /^[a-zA-Z0-9]{8,24}$/
+    if (!rePwd.test(password)) {
+      alert('パスワードは半角英数字 8文字以上24文字以内で入力してください')
+      return
+    }
+    if (password != confirmPassword) {
+      alert('パスワードが一致しません')
+      return
+    }
+    // 登録処理
+    if (dispatch && dispatch !== null && dispatch !== undefined) {
+      // await dispatch(register(name, email, password))
+    }
+  }
+
+  // 認証済みであればトップページへ遷移
+  if (typeof window !== 'undefined' && isAuthenticated) {
+    router.push('/')
   }
 
   return (
@@ -90,6 +115,22 @@ const Register:React.FC = () => {
             placeholder="半角英数字8文字以上"
             onChange={onChange}
             value={password}
+            required
+          />
+        </div>
+
+        {/* パスワード(確認用) */}
+        <div className="mb-4">
+          <label className="mb-1" htmlFor="confirmPassword">
+            パスワード(確認用)
+          </label>
+          <input
+            className="input-form"
+            type="password"
+            name="confirmPassword"
+            placeholder=""
+            onChange={onChange}
+            value={confirmPassword}
             required
           />
         </div>
