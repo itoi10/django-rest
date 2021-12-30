@@ -1,4 +1,8 @@
-import { REGISTER_FAIL, REGISTER_SUCCESS, REMOVE_AUTH_LOADING, SET_AUTH_LOADING } from "../actions/types"
+import {
+  REGISTER_FAIL, REGISTER_SUCCESS,
+  LOGIN_SUCCESS, LOGIN_FAIL,
+  REMOVE_AUTH_LOADING, SET_AUTH_LOADING
+} from "../actions/types"
 
 // 初期状態
 const initialState = {
@@ -21,6 +25,17 @@ const authReducer = (state = initialState, action) => {
     case REGISTER_FAIL:
       return {
         ...state,
+      }
+    // ログイン
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+      }
+    case LOGIN_FAIL:
+      return {
+        ...state,
+        isAuthenticated: false,
       }
     // 読込中
     case SET_AUTH_LOADING:

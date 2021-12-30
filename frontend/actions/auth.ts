@@ -1,5 +1,7 @@
 import {
-  REGISTER_SUCCESS, REGISTER_FAIL, SET_AUTH_LOADING, REMOVE_AUTH_LOADING
+  REGISTER_SUCCESS, REGISTER_FAIL,
+  LOGIN_SUCCESS, LOGIN_FAIL,
+  SET_AUTH_LOADING, REMOVE_AUTH_LOADING
 } from './types'
 
 // アカウント登録
@@ -34,5 +36,39 @@ export const register = (name:string, email:string, password:string) => async (d
   }
 
   // ロード中を解除
+  dispatch( { type: REMOVE_AUTH_LOADING } )
+}
+
+// ログイン
+export const login = (email:string, password:string) => async(dispatch) => {
+  dispatch( { type: SET_AUTH_LOADING } )
+
+  const body = JSON.stringify({
+    email,
+    password,
+  })
+  const payload = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: body
+  }
+  // APIコール
+  try {
+    const res = await fetch('/api/account/login', payload)
+    if (res.status === 200) {
+      dispatch( { type: LOGIN_SUCCESS } )
+      // ユーザー情報取得
+      dispatch(user())
+    }
+    else {
+      dispatch( { type: LOGIN_FAIL } )
+    }
+  }
+  catch(e) {
+    dispatch( { type: LOGIN_FAIL } )
+  }
+
   dispatch( { type: REMOVE_AUTH_LOADING } )
 }
