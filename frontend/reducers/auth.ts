@@ -1,6 +1,7 @@
 import {
   REGISTER_FAIL, REGISTER_SUCCESS,
   LOGIN_SUCCESS, LOGIN_FAIL,
+  USER_SUCCESS, USER_FAIL,
   REMOVE_AUTH_LOADING, SET_AUTH_LOADING
 } from "../actions/types"
 
@@ -36,6 +37,17 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: false,
+      }
+    // ユーザー情報取得
+    case USER_SUCCESS:
+      return {
+        ...state,
+        user: payload.user,
+      }
+    case USER_FAIL:
+      return {
+        ...state,
+        user: null,
       }
     // 読込中
     case SET_AUTH_LOADING:

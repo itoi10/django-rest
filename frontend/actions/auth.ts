@@ -1,6 +1,7 @@
 import {
   REGISTER_SUCCESS, REGISTER_FAIL,
   LOGIN_SUCCESS, LOGIN_FAIL,
+  USER_SUCCESS, USER_FAIL,
   SET_AUTH_LOADING, REMOVE_AUTH_LOADING
 } from './types'
 
@@ -69,6 +70,31 @@ export const login = (email:string, password:string) => async(dispatch) => {
   catch(e) {
     dispatch( { type: LOGIN_FAIL } )
   }
+
+  dispatch( { type: REMOVE_AUTH_LOADING } )
+}
+
+// ユーザー情報取得
+export const auth = (email:string, password:string) => async(dispatch) => {
+  dispatch( { type: SET_AUTH_LOADING } )
+
+  try {
+    const res = await fetch('/api/account/user', {method: 'GET'})
+    const data = await res.json()
+    if (res.status === 200) {
+      dispatch({
+        type: USER_SUCCESS,
+        payload: data,
+      })
+    }
+    else {
+      dispatch( { type: USER_FAIL } )
+    }
+  }
+  catch(e) {
+    dispatch( { type: USER_FAIL } )
+  }
+
 
   dispatch( { type: REMOVE_AUTH_LOADING } )
 }
