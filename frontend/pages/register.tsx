@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
-// import { register } from '../actions/auth'
+import { register } from '../actions/auth'
 import Loader from 'react-loader-spinner'
 import Head from 'next/head'
 
@@ -51,7 +51,7 @@ const Register:React.FC = () => {
     }
     // 登録処理
     if (dispatch && dispatch !== null && dispatch !== undefined) {
-      // await dispatch(register(name, email, password))
+      await dispatch(register(name, email, password))
     }
   }
 

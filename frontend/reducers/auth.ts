@@ -10,6 +10,8 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   const {type, payload} = action
 
+  console.log(`type: ${type} state: ${state}`)
+
   switch (type) {
     // アカウント登録
     case REGISTER_SUCCESS:
