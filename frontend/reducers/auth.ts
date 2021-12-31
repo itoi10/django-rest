@@ -4,6 +4,7 @@ import {
   USER_SUCCESS, USER_FAIL,
   REFRESH_SUCCESS, REFRESH_FAIl,
   AUTHENTICATED_SUCCESS, AUTHENTICATED_FAIL,
+  LOGOUT_SUCCESS, LOGOUT_FAIL,
   REMOVE_AUTH_LOADING, SET_AUTH_LOADING
 } from "../actions/types"
 
@@ -74,6 +75,17 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isAuthenticated: false,
         user: null,
+      }
+    // ログアウト
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
+      }
+    case LOGOUT_FAIL:
+      return {
+        ...state,
       }
     // 読込中
     case SET_AUTH_LOADING:

@@ -4,6 +4,7 @@ import {
   USER_SUCCESS, USER_FAIL,
   REFRESH_SUCCESS, REFRESH_FAIl,
   AUTHENTICATED_SUCCESS, AUTHENTICATED_FAIL,
+  LOGOUT_SUCCESS, LOGOUT_FAIL,
   SET_AUTH_LOADING, REMOVE_AUTH_LOADING
 } from './types'
 
@@ -124,15 +125,12 @@ export const refresh = () => async(dispatch) => {
   dispatch( { type: REMOVE_AUTH_LOADING } )
 }
 
-
-
 // 認証チェック
 export const verify = () => async(dispatch) => {
   dispatch( { type: SET_AUTH_LOADING } )
 
   try {
     const res = await fetch('/api/account/verify', {method: 'GET'})
-    const data = await res.json()
     if (res.status === 200) {
       dispatch({ type: AUTHENTICATED_SUCCESS })
       // 認証成功したらユーザー情報取得
@@ -144,6 +142,27 @@ export const verify = () => async(dispatch) => {
   }
   catch(e) {
     dispatch( { type: AUTHENTICATED_FAIL } )
+  }
+
+  dispatch( { type: REMOVE_AUTH_LOADING } )
+}
+
+
+// ログアウト
+export const logout = () => async(dispatch) => {
+  dispatch( { type: SET_AUTH_LOADING } )
+
+  try {
+    const res = await fetch('/api/account/logout', {method: 'POST'})
+    if (res.status === 200) {
+      dispatch({ type: LOGOUT_SUCCESS })
+    }
+    else {
+      dispatch( { type: LOGOUT_FAIL } )
+    }
+  }
+  catch(e) {
+    dispatch( { type: LOGIN_FAIL } )
   }
 
   dispatch( { type: REMOVE_AUTH_LOADING } )
