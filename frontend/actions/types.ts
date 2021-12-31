@@ -10,6 +10,14 @@ export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const USER_SUCCESS = 'USER_SUCCESS'
 export const USER_FAIL = 'USER_FAIL'
 
+// リフレッシュトークン
+export const REFRESH_SUCCESS = 'REFRESH_SUCCESS'
+export const REFRESH_FAIl = 'REFRESH_FAIl'
+
+// 認証チェック
+export const AUTHENTICATED_SUCCESS = 'AUTHENTICATED_SUCCESS'
+export const AUTHENTICATED_FAIL = 'AUTHENTICATED_FAIL'
+
 // 読込中
 export const SET_AUTH_LOADING = 'SET_AUTH_LOADING'
 export const REMOVE_AUTH_LOADING = 'REMOVE_AUTH_LOADING'

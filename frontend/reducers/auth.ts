@@ -2,6 +2,8 @@ import {
   REGISTER_FAIL, REGISTER_SUCCESS,
   LOGIN_SUCCESS, LOGIN_FAIL,
   USER_SUCCESS, USER_FAIL,
+  REFRESH_SUCCESS, REFRESH_FAIl,
+  AUTHENTICATED_SUCCESS, AUTHENTICATED_FAIL,
   REMOVE_AUTH_LOADING, SET_AUTH_LOADING
 } from "../actions/types"
 
@@ -47,6 +49,30 @@ const authReducer = (state = initialState, action) => {
     case USER_FAIL:
       return {
         ...state,
+        user: null,
+      }
+    // リフレッシュトークンを使いアクセストークン再発行
+    case REFRESH_SUCCESS:
+      return {
+        ...state,
+      }
+    case REFRESH_FAIl:
+      return {
+        ...state,
+        // トークン再発行失敗時は認証falseにする
+        isAuthenticated: false,
+        user: null,
+      }
+    // 認証チェック
+    case AUTHENTICATED_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+      }
+    case AUTHENTICATED_FAIL:
+      return {
+        ...state,
+        isAuthenticated: false,
         user: null,
       }
     // 読込中
