@@ -20,12 +20,14 @@ export default async (req, res) => {
     },
     body: body,
   }
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login/`
+
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/login/`
 
   // backendサーバコール
   try {
     const apiRes = await fetch(apiUrl, payload)
     const data = await apiRes.json()
+    console.log(data)
     if (apiRes.status === 200) {
       // アクセストークンとリフレッシュトークンをcookieに保存する
       res.setHeader('Set-Cookie', [
@@ -35,10 +37,8 @@ export default async (req, res) => {
           sameSite: 'Lax',
           path: '/',
           maxAge: 60 * 60, // アクセストークンは短めの1時間
-        })
-      ])
-      res.setHeader('Set-Cookie', [
-        cookie.serialize('refresh', data.access, {
+        }),
+        cookie.serialize('refresh', data.refresh, {
           httpOnly: false,
           secure: true,
           sameSite: 'Lax',

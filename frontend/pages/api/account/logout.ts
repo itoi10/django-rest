@@ -7,7 +7,7 @@ export default async (req, res) => {
     return res.status(405).json({ error: `Method ${req.method} not allowed` })
   }
 
-  // アクセストークン削除
+  // トークンをcookieから削除
   res.setHeader('Set-Cookie', [
     cookie.serialize('access', '', {
       httpOnly: false,
@@ -15,10 +15,7 @@ export default async (req, res) => {
       sameSite: 'Lax',
       path: '/',
       expires: new Date(0),
-    })
-  ])
-  // リフレッシュトークン削除
-  res.setHeader('Set-Cookie', [
+    }),
     cookie.serialize('refresh', '', {
       httpOnly: false,
       secure: true,
