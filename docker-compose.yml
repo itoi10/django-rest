@@ -12,3 +12,11 @@ services:
       - "8000:8000"
     # depends_on:
     #   - db
+
+  front:
+    build: ./frontend
+    volumes:
+      - ./frontend/:/usr/src/app
+    command: sh -c "yarn dev"
+    ports:
+      - "3000:3000"
