@@ -1,8 +1,20 @@
 version: '3'
 
 services:
-  # db:
-  #   image: postgres
+  db:
+    restart: always
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      TZ: Asia/Tokyo
+    ports:
+      - '3306:3306'
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+    tty: true
+
   back:
     build: ./backend
     volumes:
@@ -10,8 +22,8 @@ services:
     command: python3 manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
 
   front:
     build: ./frontend
@@ -20,3 +32,7 @@ services:
     command: sh -c "yarn dev"
     ports:
       - "3000:3000"
+
+volumes:
+  mysql-data:
+    driver: local

@@ -54,8 +54,6 @@ export default async (req, res) => {
     }
   }
   catch(e) {
-    console.log('err')
-    console.log(e)
     return res.status(500).json({ error: 'ログインに失敗しました' })
   }
 }
