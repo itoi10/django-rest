@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { useSelector, useDispatch } from 'react-redux'
-import { logout } from '../actions/auth'
+import { logout } from '../redux/actions/auth'
 
 const Navigation:React.FC = () => {
   const dispatch = useDispatch()

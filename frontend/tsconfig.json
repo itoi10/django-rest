@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/_app.tsx", "components/Layout.tsx", "store.ts", "pages/index.tsx"  ],
+, "pages/_app.tsx", "components/Layout.tsx", "redux/store.ts", "pages/index.tsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
-import { register } from '../actions/auth'
+import { register } from '../redux/actions/auth'
 import Loader from 'react-loader-spinner'
 import Head from 'next/head'
 

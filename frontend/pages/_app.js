@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux'
-import { useStore } from '../store'
+import { useStore } from '../redux/store'
 import Layout from '../components/Layout'
 import '../styles/globals.css'
 

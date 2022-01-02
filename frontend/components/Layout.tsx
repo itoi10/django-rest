@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { refresh } from '../actions/auth'
+import { refresh } from '../redux/actions/auth'
 import Head from "next/head";
 import Navigation from './Navigation'
 
