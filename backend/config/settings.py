@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'app',
     'accounts',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +53,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+# APIコール許可
+CORS_ALLOWED_ORIGINS = [
+    # フロントエンドのURL
+    'http://localhost:3000'
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -147,18 +155,23 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ]
+    ],
+    'DATETIME_FORMAT': '%Y/%m/%d %H:%M',
 }
 
 # simplejwtの設定
 SIMPLE_JWT = {
-    'ACCOUNT_TOKEN_LIFETIME': timedelta(hours=1), # アクセストークンの期限 (1時間)
+    'ACCOUNT_TOKEN_LIFETIME': timedelta(hours=1),  # アクセストークンの期限 (1時間)
     'REFRESH_TOKEN_LIFETIME': timedelta(days=3),  # リフレッシュトークンの期限 (3日)
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
-    'AUTH_HEADER_TYPES': ( 'Bearer', ),
-    'AUTH_TOKEN_CLASSES': ( 'rest_framework_simplejwt.tokens.AccessToken', )
+    'AUTH_HEADER_TYPES': ('Bearer', ),
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken', )
 }
 
 # メールアドレス認証のためにカスタムユーザー設定
 AUTH_USER_MODEL = 'accounts.UserAccount'
+
+# 画像を扱う設定
+MEDIA_URL = '/media/'
+MEDIA_ROOT = str(BASE_DIR / 'media')
