@@ -47,7 +47,7 @@ class UserView(APIView):
         try:
             user = request.user
             print(f'{user = }')
-            user = UserSerializer(user)
+            user = UserSerializer(user, context={"request": request})
             print(f'{user = }')
 
             return Response(
@@ -61,3 +61,7 @@ class UserView(APIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
+
+class UserViewSet(ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
