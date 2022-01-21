@@ -1,26 +1,31 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    PermissionsMixin,
+    BaseUserManager,
+)
 
 # モデルを作成したらデータベースの再構築を行う
 # $ python manage.py makemigrations
 # $ rm -rf db.sqlite3 (カスタムユーザーを作成したので一旦DB削除)
 # $ python manage.py migrate
 
+
 class UserManager(BaseUserManager):
     # アカウント登録のときに呼び出される関数
     def create_user(self, email, name, password=None):
         # メール確認
         if not email:
-          raise ValueError('メールアドレスは必須です')
-        print('origin ' + email)
+            raise ValueError("メールアドレスは必須です")
+        print("origin " + email)
         email = self.normalize_email(email)
-        print('normal ' + email)
+        print("normal " + email)
         email = email.lower()
-        print('lower  ' + email)
+        print("lower  " + email)
 
         user = self.model(
-          email=email,
-          name=name,
+            email=email,
+            name=name,
         )
 
         user.set_password(password)
@@ -36,24 +41,25 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class UserAccount(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField('メールアドレス', max_length=255, unique=True)
-    name = models.CharField('名前', max_length=255)
 
-    image = models.ImageField(upload_to='images', verbose_name='プロフィール画像', default='profile/default.png')
-    updated_at = models.DateTimeField('更新日', auto_now=True)
-    created_at = models.DateTimeField('作成日', auto_now=True)
+class UserAccount(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField("メールアドレス", max_length=255, unique=True)
+    name = models.CharField("名前", max_length=255)
+
+    image = models.ImageField(
+        upload_to="images", verbose_name="プロフィール画像", default="profile/default.png"
+    )
+    updated_at = models.DateTimeField("更新日", auto_now=True)
+    created_at = models.DateTimeField("作成日", auto_now=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-
-
     objects = UserManager()
 
     # メールアドレスと名前を必須項目とする
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["name"]
 
     def __str__(self):
-      return self.email
+        return self.email
