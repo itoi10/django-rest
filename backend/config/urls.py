@@ -16,6 +16,8 @@ urlpatterns = [
     path("api/verify/", TokenVerifyView.as_view()),
     # アカウント認証系はaccountsに任せる
     path("api/auth/", include("accounts.urls")),
+    # app
+    path("api/", include("app.urls")),
     path("admin/", admin.site.urls),
 ]
 
