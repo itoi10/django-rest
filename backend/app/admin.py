@@ -4,7 +4,7 @@ from django.contrib.admin import ModelAdmin
 
 
 class PostCustom(ModelAdmin):
-    list_display = ("id", "title", "update_at", "created_at")
+    list_display = ("id", "title", "updated_at", "created_at")
     list_display_links = ("id", "title")
 
 
