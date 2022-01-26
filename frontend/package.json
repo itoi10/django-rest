@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.5",
     "cookie": "^0.4.1",
     "date-fns": "^2.27.0",
     "micro": "^9.3.4",
@@ -20,7 +21,8 @@
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
-    "stripe": "^8.195.0"
+    "stripe": "^8.195.0",
+    "swr": "^1.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
