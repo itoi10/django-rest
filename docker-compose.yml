@@ -20,6 +20,8 @@ services:
 
   back:
     build: ./backend
+    environment:
+      - SECRET_KEY=$SECRET_KEY
     volumes:
       - ./backend/:/code
     command: python3 manage.py runserver 0.0.0.0:8000
