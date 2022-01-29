@@ -3,6 +3,15 @@ import Link from 'next/link'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../redux/actions/auth'
 
+import {
+  HomeIcon,
+  LogoutIcon,
+  LoginIcon,
+  PlusCircleIcon,
+  UserAddIcon,
+  UserIcon
+} from '@heroicons/react/outline'
+
 const Navigation:React.FC = () => {
   const dispatch = useDispatch()
   // 認証状態取得
@@ -16,43 +25,61 @@ const Navigation:React.FC = () => {
   }
 
   return (
-    <>
-      <div className="bg-gray-900">
-        <div className="max-w-7xl mx-auto px-8 py-6">
-          <div className="flex item-center justify-between">
-            <div>
-              <Link href='/'>
-                <a className="text-white hover:text-gray-50 font-extrabold text-lg">
-                  トップページ
-                </a>
-              </Link>
-            </div>
-            <div>
-              {isAuthenticated ? (
-                // ログイン済
-                <div onClick={logoutHandler} className="cursor-pointer button-nav">
-                  ログアウト
+    <div className="sticky top-0 bg-white z-10">
+      <div className="border-b py-3">
+        <div className="max-w-5xl mx-auto flex justify-between px-4">
+          <div className="text-lg font-extrabold">
+            <Link href="/">
+              <a>AppName</a>
+            </Link>
+          </div>
+          <div className="flex space-x-4">
+            <Link href="/">
+              <a>
+                <HomeIcon className="h-7 w-7"/>
+              </a>
+            </Link>
+
+            {/* ログインしているか？ */}
+            {isAuthenticated ? (
+              <div className="fle space-x-4">
+                {/* 新規投稿 */}
+                <Link href="/post/new">
+                  <a>
+                    <PlusCircleIcon className="h-7 w-7"/>
+                  </a>
+                </Link>
+                {/* プロフィール */}
+                <Link href="/profile">
+                  <a>
+                    <UserIcon className="h-7 w-7"/>
+                  </a>
+                </Link>
+                {/* ログアウト */}
+                <div onClick={logoutHandler} className="cursor-pointer">
+                  <LogoutIcon className="h-7 w-7"/>
                 </div>
-              ): (
-                // 未ログイン
-                <div>
-                  <Link href='/login'>
-                    <a className="button-nav mr-4">
-                      ログイン
-                    </a>
-                  </Link>
-                  <Link href='/register'>
-                    <a className="button-nav">
-                      アカウント登録
-                    </a>
-                  </Link>
-                </div>
-              )}
-            </div>
+              </div>
+            ) : (
+              <div className="flex space-x-4">
+                {/* ログイン */}
+                <Link href="/login">
+                  <a>
+                    <LoginIcon className="h-7 w-7"/>
+                  </a>
+                </Link>
+                {/* アカウント登録 */}
+                <Link href="/register">
+                  <a>
+                    <UserAddIcon className="h-7 w-7"/>
+                  </a>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
