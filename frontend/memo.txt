@@ -1,0 +1,16 @@
+# SWR
+Zenn そうです。わたしがReactをシンプルにするSWRです。
+https://zenn.dev/uttk/articles/b3bcbedbc1fd00
+
+SWR は、Next.js を作っているVercel 社が開発しているデータフェッチのための React Hooks ライブラリ
+
+## SWR の特徴
+非常にシンプル
+React Hooks ファースト
+非同期処理を簡単に扱えるようになる
+高速で軽量で再利用可能なデータフェッチ
+リクエストの重複排除
+リアクティブな動作の実現
+SSR / SSG に対応
+もちろん、Next.js 対応 🎊
+React Native でも使える 🎐
