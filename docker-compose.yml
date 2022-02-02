@@ -37,3 +37,5 @@ services:
     command: sh -c "yarn dev"
     ports:
       - "3000:3000"
+    depends_on:
+      - back

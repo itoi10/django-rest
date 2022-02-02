@@ -1,6 +1,6 @@
 // 投稿一覧取得
 export async function getPostList() {
-  const apiRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/post_list`, {
+  const apiRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/post_list/`, {
     method: 'GET',
   })
   const posts = await apiRes.json()
@@ -9,7 +9,7 @@ export async function getPostList() {
 
 // 投稿一覧ID取得
 export async function getPostIds() {
-  const apiRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/post_list`, {
+  const apiRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/post_list/`, {
     method: 'GET',
   })
   const posts = await apiRes.json()

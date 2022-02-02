@@ -2,8 +2,8 @@ module.exports = {
   reactStrictMode: true,
   // swcMinify: false,
 
-  // 画像をローカルホストから取得できるようにする
+  // 画像をローカルホスト,backコンテナから取得できるようにする
   images: {
-    domains: ['localhost'],
+    domains: ['localhost', 'back'],
   }
 }

@@ -58,7 +58,8 @@ MIDDLEWARE = [
 # APIコール許可
 CORS_ALLOWED_ORIGINS = [
     # フロントエンドのURL
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "http://front:3000",
 ]
 
 ROOT_URLCONF = "config.urls"

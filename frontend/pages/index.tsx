@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { getPostList } from '../lib/posts'
 import useSWR from "swr";
@@ -117,9 +118,8 @@ const Index:React.FC = ({staticPosts}:any) => {
 export default Index
 
 // SSG
-export async function getStaticProps() {
+export const getStaticProps:GetStaticProps = async() => {
   const staticPosts = await getPostList()
-
 
   return {
     props: {staticPosts},
