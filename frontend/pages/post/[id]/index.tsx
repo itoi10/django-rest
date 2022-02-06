@@ -42,7 +42,53 @@ const DetailPost:React.FC = ({staticPost, id}:any) => {
 
   return (
     <>
-      <div>投稿詳細画面</div>
+      <Head>
+        <title>DjangoREST Next.js App | 詳細</title>
+      </Head>
+
+      {post && (
+        <div className="max-w-screen-lg mx-auto px-4">
+          <div className="grid grid-cols-3 bg-white border">
+
+            {/* 投稿画像 */}
+            <div className="col-span-2">
+              <Image
+                src={post.image}
+                alt={post.title}
+                width={1000}
+                height={1000}
+                objectFit="cover"
+              />
+            </div>
+
+            {/* 投稿者情報, タイトル等 */}
+            <div className="col-span-1">
+              <div className="border-b p-4 flex justify-between items-center">
+                <div className="flex items-center space-x-4">
+                  <Image
+                    src={post.user.image}
+                    className="rounded-full"
+                    alt={post.title}
+                    width={40}
+                    height={40}
+                    objectFit="cover"
+                  />
+                  <div>
+                    <div>{post.user.name}</div>
+                    <div>{post.title}</div>
+                  </div>
+                </div>
+              </div>
+              <div className="whitespace-pre p-4">
+                <div className="leading-relaxed break words whitespace-pre-wrap">
+                  {post.content}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
     </>
   )
 }
