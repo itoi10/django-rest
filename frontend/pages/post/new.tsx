@@ -88,7 +88,9 @@ const NewPost:React.FC = () => {
           {loading ? (
             <Loader type="Oval" color="F59E00" width={50} height={50} />
           ) : (
-            <button className="button-yellow" type="submit">送信</button>
+            <button className="button-yellow" type="submit">
+              送信
+              </button>
           )}
         </div>
       </form>
